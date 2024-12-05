@@ -26,6 +26,8 @@ By passwordtextbox=By.id("password");
 By usernamelist=By.xpath("//div[@id='login_credentials']/br/preceding-sibling::text()");
 By password=By.xpath("//div[@class='login_password']/h4");
 By logotext= By.className("login_logo");
+By carticon=By.className("shopping_cart_link");
+By loginfailedmessage= By.xpath("//h3[@data-test='error']");
 
 
 
@@ -68,4 +70,14 @@ By logotext= By.className("login_logo");
         return  getStringListFromElementList(getAllUserNames());
     }
 
+    public  boolean isCartIconPresent(){
+        return isWebElementPresentByType(carticon);
+    }
+
+    public boolean isErrorMessageDisplayed(){
+        return isWebElementPresentByType(loginfailedmessage);
+    }
+    public String getLoginFailedMessage(){
+       return getTextsafely(getElementsafely(loginfailedmessage));
+    }
 }

@@ -4,30 +4,31 @@ import Module.SauceDemo;
 import org.testng.annotations.*;
 import DataProvider.SauceData;
 
-public class SauceTest extends SauceBaseClass {
+public class SauceInvalidLogin extends SauceBaseClass {
 
 
 
-private  SaucePage sp=new SaucePage(this);
 SauceDemo demo=null;
-
-    @BeforeMethod
-    public void initializesClasses(){
+    @Parameters({"browser"})
+    @BeforeClass
+    public void initializesClasse(@Optional("chrome") String browser){
+        configureBrowser(browser);
         this.demo = new SauceDemo(this);
 
     }
-    @Test(dataProvider = "SauceValidAll",dataProviderClass = SauceData.class,priority = 3)
-    public  void loginValidCredentials(String username, String password){
-       demo.login(username,password);
-    }
-/*
+
     @Test(dataProvider = "SauceInvalidpassword",dataProviderClass = SauceData.class,priority = 0)
     public  void loginValidUsernameInvalidPassword(String username, String password){
         demo.login(username,password);
+        demo.verifyUserisNotLoggedIn();
+        demo.verifyLoginFailedMesage();
     }
     @Test(priority = 1)
     public void loginInvalidUsernameValidpassword( ){
         demo.login(getConfig().getProperty("invalidusername"),getConfig().getProperty("validpasssword"));
+        demo.verifyUserisNotLoggedIn();
+        demo.verifyLoginFailedMesage();
+
     }
 
     @Test(priority = 2)
@@ -35,6 +36,10 @@ SauceDemo demo=null;
 
         demo.verifyLoginButtontext();
         demo.verifySauceLogo();
-    }*/
+    }
+@AfterClass
+public void tearDownMethod(){
 
+    closebrowser();
+}
 }

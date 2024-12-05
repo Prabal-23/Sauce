@@ -99,6 +99,14 @@ public  class BasePage  extends   RemoteWebElement{
         }
         return listtext;
     }
+    public Boolean isWebElementPresentByType(By locator){
+        try{
 
+            return  getElementsafely(locator).isDisplayed();
+        }
+        catch (Throwable e){
+            return false;
+        }
+    }
 
 }

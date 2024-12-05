@@ -4,7 +4,8 @@
     <test name="Test1">
         <parameter name="browser" value="chrome"></parameter>
         <classes>
-            <class name="SauceTest"></class>
+            <class name="SauceInvalidLogin"></class>
+
         </classes>
 
     </test>

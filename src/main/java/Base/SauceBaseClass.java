@@ -14,12 +14,14 @@ import java.time.Duration;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
+
 public class SauceBaseClass {
 
     private  static WebDriver driver ;
     public static WebDriverWait wait;
     private static Properties config;
     public static final String CONFIG_PROP = "config.properties";
+    private static UtilClass utilClass=null;
 
 
 
@@ -32,15 +34,19 @@ public class SauceBaseClass {
         return config;
     }
 
+    public  UtilClass getUtil(){
+        return  utilClass;
+    }
+
 
     @BeforeSuite
     public  void beforeSuite() {
 
         config = UtilClass.getPropertiesFile(CONFIG_PROP);
+         utilClass= new UtilClass();
 
     }
 
-        @BeforeClass
     @Parameters({"browser"})
     public void configureBrowser ( @Optional("chrome") String browser){
      if (browser.equals("chrome"))
@@ -63,4 +69,9 @@ public class SauceBaseClass {
         wait.ignoring(TimeoutException.class);
 
     }
+
+    public void closebrowser(){
+        driver.quit();
+    }
+
 }
