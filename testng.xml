@@ -5,6 +5,8 @@
         <parameter name="browser" value="chrome"></parameter>
         <classes>
             <class name="SauceInvalidLogin"></class>
+            <class name="SauceValidLogin"></class>
+
 
         </classes>
 

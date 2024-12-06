@@ -83,4 +83,21 @@ public class SauceDemo {
         Assert.assertFalse(saucePage.isCartIconPresent());
     }
 
+    public void verifyBlankusernameMessage(){
+        String s = saucePage.getLoginFailedMessage();
+        System.out.println(s);
+        Assert.assertEquals(s,sauceBaseClass.getConfig().getProperty("blankuseramemessage"));
+    }
+
+    public void verifyBlankpasswordMessage(){
+        String  s= saucePage.getLoginFailedMessage();
+        Assert.assertEquals(s,sauceBaseClass.getConfig().getProperty("blankpasswordmessage"));
+
+    }
+
+    public void verifyBothfieldBlankMesage(){
+        String  s= saucePage.getLoginFailedMessage();
+        Assert.assertEquals(s,sauceBaseClass.getConfig().getProperty("blankpasswordmessage"));
+    }
+
 }

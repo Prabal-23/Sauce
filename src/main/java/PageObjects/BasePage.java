@@ -1,10 +1,7 @@
 package PageObjects;
 
 import Base.SauceBaseClass;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.AjaxElementLocatorFactory;
@@ -53,11 +50,16 @@ public  class BasePage  extends   RemoteWebElement{
 
             baseClass.wait.until(ExpectedConditions.visibilityOf(getElementsafely(locator)));
             baseClass.wait.until(ExpectedConditions.elementToBeClickable(getElementsafely(locator)));
-            getElementsafely(locator).clear();
-            getElementsafely(locator).sendKeys(text);
+            WebElement element =getElementsafely(locator);
+            while (!element.getAttribute("value").equals("")) {
+                element.sendKeys(Keys.BACK_SPACE);
+            }
+            element.sendKeys(text);
+
 
 
         } catch (Exception e) {
+            System.out.println("catch inside");
             System.out.println(e.getMessage());
         }
     }

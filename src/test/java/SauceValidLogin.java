@@ -1,5 +1,7 @@
 import Base.SauceBaseClass;
 import DataProvider.SauceData;
+import Listener.TestListener;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
 import Module.SauceDemo;
 
@@ -26,6 +28,14 @@ public class SauceValidLogin extends SauceBaseClass {
         demo.getCookieValueBykey(getConfig().getProperty("usernamekey"),username);
 
     }
+     @AfterMethod
+     public void captureScreenShotAfterTestMethod(ITestResult result){
+         String testName = result.getName(); // Get the name of the test method
+         TestListener.captureScreenshot(getbaseDriver(), testName);
+         System.out.println("Screenshot captured for: " + testName);
+
+     }
+
 
     @AfterMethod
     public void tearDownMethod(){
