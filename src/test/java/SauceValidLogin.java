@@ -30,7 +30,7 @@ public class SauceValidLogin extends SauceBaseClass {
     }
      @AfterMethod
      public void captureScreenShotAfterTestMethod(ITestResult result){
-         String testName = result.getName(); // Get the name of the test method
+         String testName = result.getName(); 
          ScreenShot.captureScreenshot(getbaseDriver(), testName);
          System.out.println("Screenshot captured for: " + testName);
 
