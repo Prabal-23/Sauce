@@ -1,11 +1,10 @@
-package Listener;
+package Screenshots;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
-import org.testng.ITestResult;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
@@ -13,7 +12,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TestListener implements ITestListener {
+public class ScreenShot implements ITestListener {
 
    static String screenshotsDirectory = System.getProperty("user.dir") + "/screenshots/";
 

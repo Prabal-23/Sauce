@@ -1,6 +1,6 @@
 import Base.SauceBaseClass;
-import Listener.TestListener;
-import PageObjects.SaucePage;
+import Screenshots.ScreenShot;
+import Screenshots.ScreenShot;
 import Module.SauceDemo;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -59,7 +59,7 @@ SauceDemo demo=null;
     @AfterMethod
     public void captureScreenShotAfterTestMethod(ITestResult result){
         String testName = result.getName();
-        TestListener.captureScreenshot(getbaseDriver(), testName);
+        ScreenShot.captureScreenshot(getbaseDriver(), testName);
         System.out.println("Screenshot captured for: " + testName);
 
     }
