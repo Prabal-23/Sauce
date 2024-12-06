@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
@@ -33,8 +34,8 @@ public class ScreenShot implements ITestListener {
     }
 
 
-    @BeforeSuite
     public void cleanScreenshotsDirectory() {
+        System.out.println("@before Suite  invoked for cleaning screenshot drectory");
         File screenshotDir = new File(screenshotsDirectory);
         if (screenshotDir.exists()) {
             try {

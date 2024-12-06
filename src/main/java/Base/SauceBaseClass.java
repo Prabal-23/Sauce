@@ -1,5 +1,6 @@
 package Base;
 
+import Screenshots.ScreenShot;
 import Util.UtilClass;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +23,7 @@ public class SauceBaseClass {
     private static Properties config;
     public static final String CONFIG_PROP = "config.properties";
     private static UtilClass utilClass=null;
+    private  static ScreenShot screenShot=null;
 
 
 
@@ -38,12 +40,17 @@ public class SauceBaseClass {
         return  utilClass;
     }
 
+    public ScreenShot getScreenshot(){
+        return  screenShot;
+    }
+
 
     @BeforeSuite
     public  void beforeSuite() {
 
         config = UtilClass.getPropertiesFile(CONFIG_PROP);
          utilClass= new UtilClass();
+         screenShot=new ScreenShot();
 
     }
 
@@ -72,6 +79,10 @@ public class SauceBaseClass {
 
     public void closebrowser(){
         driver.quit();
+    }
+
+    @BeforeSuite public void clearDirectory(){
+        screenShot.cleanScreenshotsDirectory();
     }
 
 }
