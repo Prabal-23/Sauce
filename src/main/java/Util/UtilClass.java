@@ -21,9 +21,7 @@ import java.util.Properties;
 import java.util.Set;
 
 public class UtilClass {
-    private static String currentDirectory = System.getProperty("user.dir");
 
-    private static  String filename = currentDirectory + "\\src/main/resources/";
 
     private static DevTools devTools=null;
 
@@ -31,17 +29,20 @@ public class UtilClass {
 
     public static Properties getPropertiesFile(String file) {
         Properties prop = new Properties();
-        FileInputStream stream;
 
-        try {
-            stream =new FileInputStream(filename+file);
-            prop.load(stream);
+        try (InputStream input = UtilClass.class.getClassLoader().getResourceAsStream(file)) {
+            if (input == null) {
+                throw new IllegalArgumentException("Unable to find the properties file: " + file);
+            }
+
+            prop.load(input);
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            System.err.println("Error in loading config file: " + e.getMessage());
         }
 
         return prop;
     }
+
 
 
     public String getLocalStorageItem(WebDriver driver, String key) {
